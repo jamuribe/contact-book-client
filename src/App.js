@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import NavBarComponent from './components/navBarComponent/navBar';
+import NavBarComponent from './components/navBar/navBar';
 
 const App = () => {
   return (
