@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.css';
 
-import NavBarComponent from './components/navBar/navBar';
+import NavBarComponent from './components/navBar/NavBar';
+import ContactCard from './components/contactCard/ContactCard';
 
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello this will be the contact list dashboard</h1>
+    <div >
+      <header>
         < NavBarComponent />
+        <ContactCard />
       </header>
     </div>
   );
