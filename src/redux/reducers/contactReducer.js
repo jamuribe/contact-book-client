@@ -4,7 +4,8 @@ const initState = [{
   id: 1,
   name: 'Jose Antonio',
   number: 7875341694,
-  email: 'j@j.com'
+  email: 'j@j.com',
+  edited: []
 }]
 
 const contactReducer = (state = initState, action) => {

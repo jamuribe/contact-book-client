@@ -43,12 +43,21 @@ const EditContact = () => {
       id: contactProp.id,
       name,
       email,
-      number
+      number,
+      edited: [...contactProp.edited, { name: contactProp.name, email: contactProp.email, number: contactProp.number, time: timeStamp() }]
     }
     dispatch({ type: 'UPDATE_CONTACT', data });
     history.push('/');
   }
 
+  let timeStamp = () => {
+    let current = new Date();
+    let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+    let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+    let dateTime = cDate + ' ' + cTime;
+    return dateTime;
+  }
+  console.log(timeStamp())
   const deleteContact = (contact) => {
     dispatch({ type: 'DELETE_CONTACT', data: contact });
     history.push('/');
