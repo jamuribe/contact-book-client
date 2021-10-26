@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import { Link, useLocation, useHistory } from 'react-router-dom';
 
 const EditContact = () => {
   const [name, setName] = useState('');
@@ -49,6 +49,11 @@ const EditContact = () => {
     history.push('/');
   }
 
+  const deleteContact = (contact) => {
+    dispatch({ type: 'DELETE_CONTACT', data: contact });
+    history.push('/');
+  }
+
   return (
     <div className="container">
       {currentContact ? (
@@ -89,6 +94,7 @@ const EditContact = () => {
                   <Link to="/" className="btn m-2 btn-danger">
                     Cancel
                   </Link>
+                  <button type="button" onClick={() => deleteContact(currentContact)} className="btn btn-small btn-danger">Delete</button>
                 </div>
               </form>
             </div>
