@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 
 const AddContact = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [number, setNumber] = useState('');
+
+  const history = useHistory();
 
   const contacts = useSelector((state) => state);
+  const dispatch = useDispatch();
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const checkEmail = contacts.find((contact) => contact.email === email && contact);
 
-    if (!name || !email || !phoneNumber) {
+    if (!name || !email || !number) {
       return 'Please fill in the form'; // FIX THIS
     }
     console.log(checkEmail);
@@ -26,9 +30,10 @@ const AddContact = () => {
       id: contacts[contacts.length - 1].id + 1,
       name,
       email,
-      phoneNumber
+      number
     }
-    console.log(data)
+    dispatch({ type: 'ADD_CONTACT', data });
+    history.push('/');
   }
 
   return (
@@ -60,8 +65,8 @@ const AddContact = () => {
                 type="number"
                 placeholder="Phone Number"
                 className="form-control"
-                value={phoneNumber}
-                onChange={event => setPhoneNumber(event.target.value)}
+                value={number}
+                onChange={event => setNumber(event.target.value)}
 
               />
             </div>
