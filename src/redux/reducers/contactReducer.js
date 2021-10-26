@@ -1,3 +1,5 @@
+// BRING INITIAL STATE FROM SERVER
+
 const initState = [{
   id: 1,
   name: 'Jose Antonio',
@@ -13,6 +15,10 @@ const contactReducer = (state = initState, action) => {
     case 'UPDATE_CONTACT':
       const updateState = state.map((contact) => contact.id === action.data.id ? action.data : contact)
       state = updateState;
+      return state;
+    case 'DELETE_CONTACT':
+      const filteredContacts = state.filter((contact) => contact !== action.data && contact);
+      state = filteredContacts;
       return state;
     default:
       return state;
