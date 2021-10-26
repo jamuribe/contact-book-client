@@ -1,13 +1,25 @@
-import React from 'react'
+import React from 'react';
+import { useLocation } from 'react-router';
 
 const ContactCardDetail = () => {
+  const location = useLocation();
+  const contact = location.state.contact;
   return (
-    <div>
-      <h1>I am the card detail.</h1>
-      <h2>Update contact</h2>
-      <h2>Delete contact</h2>
-      <h2>Go to contacts</h2>
-    </div>
+    <section className="container">
+      <div className="row">
+        <figure
+          className="card shadow m-3 mx-auto"
+          style={{ "width": "25rem" }}
+        >
+          <img className="card-img-top rounded mx-auto" src="https://thispersondoesnotexist.com/image" alt="User" />
+          <figcaption className="card-body">
+            <h5 className="card-title">{contact.contact.name}</h5>
+            <p className="card-text">{contact.contact.email}</p>
+            <p className="card-text">{contact.contact.number}</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
   )
 }
 
