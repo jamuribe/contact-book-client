@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-2">
-      <Link to="/" className="navbar-brand ml-5">
-        <h2>Navigation</h2>
+      <Link to="/" className="navbar-brand mx-5 nav-link active">
+        Contact book
+      </Link>
+      <Link to="/add" className="navbar-item mx-auto nav-link active">
+        Add new contact
       </Link>
     </nav>
   )
