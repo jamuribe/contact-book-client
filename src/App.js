@@ -14,9 +14,9 @@ const App = () => {
       <NavBarComponent />
       <Switch>
         <Route exact path="/" component={() => <Dashboard />}></Route>
-        <Route path="/contact/:id" component={() => <ContactCardDetail />}></Route>
+        <Route path="/contact" component={() => <ContactCardDetail />}></Route>
         <Route path="/add" component={() => <AddContact />}></Route>
-        <Route path="/edit/:id" component={() => <EditContact />}></Route>
+        <Route path="/edit" component={() => <EditContact />}></Route>
       </Switch>
 
     </div>
