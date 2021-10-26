@@ -1,17 +1,15 @@
 import React from 'react';
 
-const ContactCard = () => {
+const ContactCard = (contact) => {
   return (
-    <div>
-      <div className="card shadow m-3" style={{ "width": "18rem" }} >
-        <img className="card-img-top" src="https://thispersondoesnotexist.com/image" alt="Lets see the face" />
-        <div className="card-body">
-          <h5 className="card-title">Name</h5>
-          <p className="card-text">Email</p>
-          <p className="card-text">Phone Number</p>
-        </div>
-      </div>
-    </div>
+    <figure className="card shadow m-3" style={{ "width": "15rem" }} >
+      <img className="card-img-top rounded mx-auto" src="https://thispersondoesnotexist.com/image" alt="User" />
+      <figcaption className="card-body">
+        <h5 className="card-title">{contact.contact.name}</h5>
+        <p className="card-text">{contact.contact.email}</p>
+        <p className="card-text">{contact.contact.number}</p>
+      </figcaption>
+    </figure>
   )
 };
 
