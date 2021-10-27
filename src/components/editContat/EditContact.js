@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
+import { eraseContact } from '../../redux/actions/actions';
 
 const EditContact = () => {
   const [name, setName] = useState('');
@@ -9,13 +10,13 @@ const EditContact = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-
-
   const location = useLocation();
+
   const contactProp = location.state.contact.contact;
 
   const contacts = useSelector(state => state);
-  const currentContact = contacts.find(contact => contact === contactProp);
+  const currentContact = contacts[0].find(contact => contact === contactProp); // fix this so that there are always contacts
+
   console.log(currentContact)
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const EditContact = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const checkEmail = contacts.find((contact) => contact.id !== contactProp.id && contact.email === email && contact);
+    const checkEmail = contacts[0].find((contact) => contact.id !== contactProp.id && contact.email === email && contact);
 
     if (!name || !email || !number) {
       return 'Please fill in the form'; // FIX THIS
@@ -57,9 +58,9 @@ const EditContact = () => {
     let dateTime = cDate + ' ' + cTime;
     return dateTime;
   }
-  console.log(timeStamp())
+
   const deleteContact = (contact) => {
-    dispatch({ type: 'DELETE_CONTACT', data: contact });
+    dispatch(eraseContact, contact);
     history.push('/');
   }
 
