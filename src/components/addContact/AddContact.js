@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { addContact, createRandomContact } from '../../redux/actions/actions';
 
 const AddContact = () => {
   const [name, setName] = useState('');
@@ -20,19 +21,24 @@ const AddContact = () => {
     if (!name || !email || !number) {
       return 'Please fill in the form'; // FIX THIS
     }
-    console.log(checkEmail);
     if (checkEmail) {
       console.log('this email already exist');
       return; // FIX THIS
     }
-    // MAKE API CALL TO STORE NEW CONTACT
     const data = {
-      id: contacts[contacts.length - 1].id + 1,
+      id: contacts[0][contacts.length - 1].id + 1,
       name,
       email,
-      number
+      number,
+      picture: 'soon'
     }
-    dispatch({ type: 'ADD_CONTACT', data });
+    dispatch(addContact(data));
+    history.push('/');
+  }
+
+  const handleRandomContact = (event) => {
+    event.preventDefault();
+    dispatch(createRandomContact());
     history.push('/');
   }
 
@@ -67,13 +73,17 @@ const AddContact = () => {
                 className="form-control"
                 value={number}
                 onChange={event => setNumber(event.target.value)}
-
               />
             </div>
             <div className="form-group my-2">
               <input type="submit" value="Add Contact"
                 className="btn btn-block btn-dark form-control" />
             </div>
+            <div className="form-group my-2">
+              <input type="submit" value="Add random contact" onClick={handleRandomContact}
+                className="btn btn-block btn-success form-control" />
+            </div>
+
           </form>
         </div>
       </div>
