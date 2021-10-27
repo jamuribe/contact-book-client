@@ -1,29 +1,30 @@
-// BRING INITIAL STATE FROM SERVER
+import { ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT, SET_CONTACTS, RANDOM_CONTACT } from "../actionTypes";
 
-const initState = [{
-  id: 1,
-  name: 'Jose Antonio',
-  number: 7875341694,
-  email: 'j@j.com',
-  edited: []
-}]
+const initialState = [];
 
-const contactReducer = (state = initState, action) => {
+const contactReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_CONTACT':
-      state = [...state, action.data];
+    case ADD_CONTACT:
+      state = [...state, action.payload];
       return state;
-    case 'UPDATE_CONTACT':
-      const updateState = state.map((contact) => contact.id === action.data.id ? action.data : contact)
+    case RANDOM_CONTACT:
+      state = [...state, action.payload];
+      return state;
+    case UPDATE_CONTACT:
+      const updateState = state.map((contact) => contact.id === action.payload.id ? action.payload : contact)
       state = updateState;
       return state;
-    case 'DELETE_CONTACT':
-      const filteredContacts = state.filter((contact) => contact !== action.data && contact);
+    case DELETE_CONTACT:
+      const filteredContacts = state.filter((contact) => contact !== action.payload && contact);
       state = filteredContacts;
+      return state;
+    case SET_CONTACTS:
+      state = [...state, action.payload]
       return state;
     default:
       return state;
   }
 }
+
 
 export default contactReducer;
