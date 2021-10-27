@@ -20,7 +20,7 @@ const ContactCardDetail = () => {
             className="card shadow m-3"
             style={{ "width": "25rem" }}
           >
-            <img className="card-img-top rounded mx-auto" src="https://thispersondoesnotexist.com/image" alt="User" />
+            <img className="card-img-top rounded mx-auto" src={contact.contact.picture} alt="User" />
             <figcaption className="card-body">
               <button className="col my-3 btn btn-outline-dark" onClick={handleButtonClick}> Edit contact
               </button>
