@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import store from './store.js'
-import getAllContacts from './redux/actions/actions.js';
+import getAllContacts from './redux/actions/actionCreators.js';
 
 store.dispatch(getAllContacts());
 

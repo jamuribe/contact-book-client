@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { addContact, createRandomContact } from '../../redux/actions/actions';
+import { addContact, createRandomContact } from '../../redux/actions/actionCreators.js';
 
 const AddContact = () => {
   const [name, setName] = useState('');
@@ -12,7 +12,6 @@ const AddContact = () => {
 
   const contacts = useSelector((state) => state);
   const dispatch = useDispatch();
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,6 +31,7 @@ const AddContact = () => {
       number,
       picture: 'soon'
     }
+
     dispatch(addContact(data));
     history.push('/');
   }
@@ -43,10 +43,11 @@ const AddContact = () => {
   }
 
   return (
-    <div className="container">
+    <section className="container">
+      <title>Add contact</title>
       <h1 className="display-3 text-center my-5">Add new contact</h1>
       <div className="row">
-        <div className="col-md-6 shadow mx-auto p-5">
+        <section className="col-md-6 shadow mx-auto p-5">
           <form onSubmit={handleSubmit}>
             <div className="form-group my-2">
               <input
@@ -85,9 +86,9 @@ const AddContact = () => {
             </div>
 
           </form>
-        </div>
+        </section>
       </div>
-    </div>
+    </section>
   )
 }
 
