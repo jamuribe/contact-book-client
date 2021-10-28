@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector, connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllContacts } from '../../redux/actions/actions.js';
 import ContactCard from '../contactCard/ContactCard.js';
 
 
-const Dashboard = () => {
-  // const [contactList, setContactList] = useState('');
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllContacts());
-  }, []);
-
-  const contacts = useSelector(state => state);
-  console.log('contacts', contacts[0]);
+const Dashboard = (props) => {
+  // const contacts = useSelector(state => state);
+  console.log('props', props.contacts);
+  const contacts = props.contacts;
 
   return (
     <div className="container">
@@ -36,4 +29,10 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+const mapStateToProps = (state) => {
+  return {
+    contacts: state
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard)
