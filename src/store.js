@@ -1,7 +1,9 @@
 import { createStore, applyMiddleware } from "redux";
 import contactReducer from "./redux/reducers/contactReducer";
 import thunk from "redux-thunk";
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-const store = createStore(contactReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk))
+const composedEnhancer = composeWithDevTools(applyMiddleware(thunk))
+const store = createStore(contactReducer, composedEnhancer)
 
 export default store;
