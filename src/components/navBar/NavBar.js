@@ -7,9 +7,6 @@ const NavBar = () => {
       <Link to="/" className="navbar-brand mx-5 nav-link active">
         Contact book
       </Link>
-      <Link to="/add" className="navbar-item mx-auto nav-link active">
-        Add new contact
-      </Link>
     </nav>
   )
 };
