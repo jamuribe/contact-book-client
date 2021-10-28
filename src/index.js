@@ -7,8 +7,11 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store.js'
 
+import store from './store.js'
+import getAllContacts from './redux/actions/actions.js';
+
+store.dispatch(getAllContacts());
 
 ReactDOM.render(
   <Provider store={store}>
