@@ -19,8 +19,7 @@ const contactReducer = (state = initialState, action) => {
       state = filteredContacts;
       return state;
     case SET_CONTACTS:
-      state = [...state, action.payload]
-      return state;
+      return [action.payload];
     default:
       return state;
   }

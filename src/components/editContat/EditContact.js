@@ -17,8 +17,6 @@ const EditContact = () => {
   const contacts = useSelector(state => state);
   const currentContact = contacts[0].find(contact => contact === contactProp); // fix this so that there are always contacts
 
-  console.log(currentContact)
-
   useEffect(() => {
     if (currentContact) {
       setName(currentContact.name);
@@ -51,16 +49,11 @@ const EditContact = () => {
     history.push('/');
   }
 
-  let timeStamp = () => {
-    let current = new Date();
-    let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
-    let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
-    let dateTime = cDate + ' ' + cTime;
-    return dateTime;
-  }
 
-  const deleteContact = (contact) => {
-    dispatch(eraseContact, contact);
+  const deleteContact = (event) => {
+    console.log(currentContact)
+    event.preventDefault();
+    dispatch(eraseContact(currentContact));
     history.push('/');
   }
 
@@ -104,7 +97,7 @@ const EditContact = () => {
                   <Link to="/" className="btn m-2 btn-danger">
                     Cancel
                   </Link>
-                  <button type="button" onClick={() => deleteContact(currentContact)} className="btn btn-small btn-danger">Delete</button>
+                  <button type="button" onClick={deleteContact} className="btn btn-small btn-danger">Delete</button>
                 </div>
               </form>
             </div>
@@ -116,6 +109,14 @@ const EditContact = () => {
 
     </div>
   )
+}
+
+let timeStamp = () => {
+  let current = new Date();
+  let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+  let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+  let dateTime = cDate + ' ' + cTime;
+  return dateTime;
 }
 
 export default EditContact

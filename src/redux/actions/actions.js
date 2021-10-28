@@ -26,7 +26,7 @@ export const randomContact = (contact) => ({
   payload: contact
 })
 
-export const getAllContacts = () => async (dispatch, getState) => {
+const getAllContacts = () => async (dispatch, getState) => {
   await axios.get('http://localhost:3001/').then(response =>
     dispatch(setContacts(response.data))
   )
@@ -35,7 +35,6 @@ export const getAllContacts = () => async (dispatch, getState) => {
 }
 
 export const addContact = (contact) => async (dispatch, getState) => {
-  console.log(contact)
   await axios.post('http://localhost:3001/add', contact).then(response => {
     dispatch(addOne(response.data))
   })
@@ -51,8 +50,10 @@ export const createRandomContact = (id) => async (dispatch, getState) => {
 }
 
 export const eraseContact = (contact) => async (dispatch, getState) => {
-  await axios.delete(`http://localhost:3001/delete`, contact).then(response => {
-    dispatch(deleteContact(response.data))
+  await axios.delete(`http://localhost:3001/erase`, { data: { contact } }).then(response => {
+    dispatch(deleteContact(contact))
   })
     .catch(error => console.log('Error 4: ', error))
 }
+
+export default getAllContacts
