@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import { eraseContact } from '../../redux/actions/actions';
+import { eraseContact, updateContact } from '../../redux/actions/actionCreators.js';
 
 const EditContact = () => {
   const [name, setName] = useState('');
@@ -13,22 +13,14 @@ const EditContact = () => {
   const location = useLocation();
 
   const contactProp = location.state.contact.contact;
-
   const contacts = useSelector(state => state);
-  const currentContact = contacts[0].find(contact => contact === contactProp); // fix this so that there are always contacts
-
-  useEffect(() => {
-    if (currentContact) {
-      setName(currentContact.name);
-      setEmail(currentContact.email);
-      setNumber(currentContact.number);
-    }
-  }, [currentContact]);
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const checkEmail = contacts[0].find((contact) => contact.id !== contactProp.id && contact.email === email && contact);
+
+    const checkEmail = contacts[0].find((contact) => {
+      return contact._id !== contactProp._id && contact.email === email && contact
+    });
 
     if (!name || !email || !number) {
       return 'Please fill in the form'; // FIX THIS
@@ -37,33 +29,33 @@ const EditContact = () => {
       console.log('this email already exist');
       return; // FIX THIS
     }
-    // MAKE API CALL TO STORE NEW CONTACT
     const data = {
-      id: contactProp.id,
+      _id: contactProp._id,
       name,
       email,
       number,
-      edited: [...contactProp.edited, { name: contactProp.name, email: contactProp.email, number: contactProp.number, time: timeStamp() }]
+      edited: [...contactProp.edited, { name: contactProp.name, email: contactProp.email, number: contactProp.number, time: timeStamp() }],
+      picture: contactProp.picture
     }
-    dispatch({ type: 'UPDATE_CONTACT', data });
+
+    dispatch(updateContact(data));
     history.push('/');
   }
 
-
   const deleteContact = (event) => {
-    console.log(currentContact)
     event.preventDefault();
-    dispatch(eraseContact(currentContact));
+    dispatch(eraseContact(contactProp));
     history.push('/');
   }
 
   return (
-    <div className="container">
-      {currentContact ? (
+    <section className="container">
+      <title>Edit Contact</title>
+      {contactProp ? (
         <>
           <h1 className="display-3 text-center my-5">Edit contact {contactProp.name}</h1>
           <div className="row">
-            <div className="col-md-6 shadow mx-auto p-5">
+            <section className="col-md-6 shadow mx-auto p-5">
               <form onSubmit={handleSubmit}>
                 <div className="form-group my-2">
                   <input
@@ -100,14 +92,14 @@ const EditContact = () => {
                   <button type="button" onClick={deleteContact} className="btn btn-small btn-danger">Delete</button>
                 </div>
               </form>
-            </div>
+            </section>
           </div>
         </>
       ) : (
         <h1 className="display-3 my-5 text-center">Not a current contact</h1>
       )}
 
-    </div>
+    </section>
   )
 }
 
