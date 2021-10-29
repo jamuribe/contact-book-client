@@ -1,6 +1,6 @@
 # Contact Book (client)
 
-This repository is the UI of a contact book application that allows you to simply create a new contact, edit that contact and delete it. 
+This repository is the UI of a contact book application that allows you to simply create a new contact, edit that contact and delete it.
 
 
 ## Installation
@@ -26,7 +26,7 @@ The page will reload if you make edits.\
 You will also see any lint errors in the console.
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](./public/screenshots/contact-book_dashboard.png)
 
 
 ## Tech Stack
