@@ -24,6 +24,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file.
+This variable should be the server's port, eg: http://localhost:3000. 
+
+
+`REACT_APP_API_URL`
+
 ## Screenshots
 
 ![App Screenshot](./public/screenshots/contact-book_dashboard.png)
