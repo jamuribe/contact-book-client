@@ -31,7 +31,7 @@ To run this project, you will need to add the following environment variables to
 This variable should be the server's port, eg: http://localhost:3000. 
 
 
-`REACT_APP_API_URL`
+`REACT_APP_API_URL` e.g. : REACT_APP_API_URL='http://localhost:3000/'
 
 ## Screenshots
 
