@@ -1,8 +1,7 @@
 import axios from "axios";
 import 'dotenv/config.js';
 
-const url = process.env.REACT_APP_URL;
-console.log(url)
+const url = process.env.REACT_APP_API_URL;
 
 export const getContactsAPI = async () => {
   return await axios.get(url)
